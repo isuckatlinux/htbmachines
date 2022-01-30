@@ -1,0 +1,13 @@
+# Nmap 7.92 scan initiated Fri Jan 21 14:48:32 2022 as: nmap -sSV --min-rate 5000 -p22,80 --open -vvv -n -Pn -oN portServices 10.10.11.104
+Nmap scan report for 10.10.11.104
+Host is up, received user-set (0.040s latency).
+Scanned at 2022-01-21 14:48:32 CET for 12s
+
+PORT   STATE SERVICE REASON         VERSION
+22/tcp open  ssh     syn-ack ttl 63 OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    syn-ack ttl 63 Apache httpd 2.4.29 ((Ubuntu))
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Jan 21 14:48:44 2022 -- 1 IP address (1 host up) scanned in 12.18 seconds

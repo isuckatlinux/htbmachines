@@ -1,0 +1,15 @@
+# Nmap 7.92 scan initiated Fri Jan 28 17:50:27 2022 as: nmap -sCV -vvv --min-rate 10000 -Pn -n -p80 -oN services 10.10.10.153
+Nmap scan report for 10.10.10.153
+Host is up, received user-set (0.034s latency).
+Scanned at 2022-01-28 17:50:27 CET for 9s
+
+PORT   STATE SERVICE REASON         VERSION
+80/tcp open  http    syn-ack ttl 63 Apache httpd 2.4.25 ((Debian))
+|_http-title: Blackhat highschool
+| http-methods: 
+|_  Supported Methods: OPTIONS HEAD GET POST
+|_http-server-header: Apache/2.4.25 (Debian)
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Jan 28 17:50:36 2022 -- 1 IP address (1 host up) scanned in 9.01 seconds

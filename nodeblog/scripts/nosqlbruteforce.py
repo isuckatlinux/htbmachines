@@ -15,7 +15,6 @@ url = args['url']
 
 user_list = []
 user_and_password = {}
-
 chars_to_test = string.digits + string.ascii_letters
 
 
@@ -57,8 +56,8 @@ def get_users(user):
         print('\b', end='')
 
 
-def dict_to_file():
-    f = open("users_passwords.txt", "a")
+def dict_to_file(filename):
+    f = open(filename, "a")
     for element in user_and_password:
         f.write(f"{element}:{user_and_password[element]}")
     f.close()
@@ -81,7 +80,8 @@ def main():
         print(user_list)
         get_passwords()
         print(user_and_password)
-    dict_to_file()
+    if args['output'] is not None:
+        dict_to_file(args['output'])
 
 
 main()
